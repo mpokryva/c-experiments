@@ -5,6 +5,11 @@ typedef struct {
 	char *password;
 	char *errorMessage;
 	int maxAttempts;
+	union login_state {
+		int one;
+		char *str;
+	} state;
+
 } login;
 
 void tryLogin(login *login, char *password) {
@@ -18,7 +23,7 @@ void tryLogin(login *login, char *password) {
 
 int main( int argc, const char* argv[] )
 {
-login attempt = {1, "Michelle", "That's not the password, you silly goose!", 3};
+login attempt = {1, "Michelle", "That's not the password, you silly goose!", 3, "str"};
 tryLogin(&attempt, "Michelle");
 
 
